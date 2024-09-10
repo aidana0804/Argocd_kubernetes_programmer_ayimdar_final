@@ -1,0 +1,32 @@
+.terraform*
+terraform.tfstate*
+
+
+# Helm
+*.tgz
+charts/
+*.helm/
+
+# Kubernetes
+.kube/
+*.kube/config
+
+# Cert-Manager
+cert-manager/
+*.yaml
+
+# Build artifacts
+build/
+dist/
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# Secrets
+*.env
+secrets/
+kubernetes/kubernetes-434707-535ba2c356b5.json

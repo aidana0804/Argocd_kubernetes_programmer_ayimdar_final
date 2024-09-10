@@ -1,0 +1,83 @@
+replicaCount: 2
+
+image:
+  frontend: europe-west2-docker.pkg.dev/kubernetes-434707/awesome-cats-images/aws_front:785722101d5a3491130d7a8cf4eaaa7c206edc8d
+  backend: europe-west2-docker.pkg.dev/kubernetes-434707/awesome-cats-images/aws_back:785722101d5a3491130d7a8cf4eaaa7c206edc8d
+
+service:
+  frontend:
+    servicePort: 5000
+    containerPort: 5000
+  backend:
+    port: 80
+    servicePort: 3000
+    targetPort: 3000
+    containerPort: 3000
+
+dbSecret:
+  name: db-secret
+  database: cG9zdGdyZXM=
+  hostname: MzUuMjQyLjEzNy4yNDQ=
+  password: MTIzNDU=
+  username: cG9zdGdyZXM=
+
+ingress:
+  host: zizili.life
+  clusterIssuer: letsencrypt-prod
+  tlsSecret: zizili-life-tls
+  backend:
+    targetPort: 3000
+  frontend:
+    containerPort: 5000
+
+certManager:
+  jobName: install-cert-manager-crds
+  jobImage: bitnami/kubectl:latest
+  crdsUrl: https://github.com/jetstack/cert-manager/releases/latest/download/cert-manager.crds.yaml
+  restartPolicy: OnFailure
+  backoffLimit: 4
+
+  certificate:
+    name: awesome-cats-cert
+    namespace: default
+    secretName: awesome-cats-tls
+    issuerRef:
+      name: letsencrypt-prod
+      kind: ClusterIssuer
+    commonName: zizili.life
+    dnsNames:
+      - zizili.life
+
+  clusterIssuer:
+    name: letsencrypt-prod
+    email: 2104.01033@manas.edu.kg
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef: letsencrypt-prod
+
+  ingressClass: nginx
+
+
+externalDns:
+  provider: google
+  google:
+    project: kubernetes-434707
+    serviceAccountSecretName: external-dns-sa
+    serviceAccountKey: ./kubernetes-434707-535ba2c356b5.json
+  
+  replicas: 1
+
+  rbac:
+    create: true
+
+  serviceAccount:
+    create: true
+    name: external-dns
+
+  logLevel: info
+  sources:
+    - ingress
+  domainFilters:
+    - zizili.life 
+  policy: sync
+  txtOwnerId: kubernetes-434707
+  interval: "1m"

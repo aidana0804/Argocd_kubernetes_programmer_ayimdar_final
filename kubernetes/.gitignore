@@ -29,4 +29,3 @@ dist/
 # Secrets
 *.env
 secrets/
-kubernetes/kubernetes-434707-535ba2c356b5.json

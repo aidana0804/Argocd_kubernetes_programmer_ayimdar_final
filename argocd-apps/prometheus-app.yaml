@@ -9,14 +9,37 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://github.com/aidana0804/Argocd_kubernetes_programmer_ayimdar_final.git
-    path: argocd-apps
-    targetRevision: HEAD
+    repoURL: https://prometheus-community.github.io/helm-charts  # Public Helm chart repo
+    chart: kube-prometheus-stack                                 # Public chart name
+    targetRevision: 36.0.0                                       # Chart version
     helm:
       valueFiles:
-        - prometheus-values.yaml  
+        - argocd-apps/prometheus-values.yaml                               
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-  
+
+
+
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: prometheus
+#   namespace: argocd
+# spec:
+#   destination:
+#     namespace: monitoring
+#     server: https://kubernetes.default.svc
+#   project: default
+#   source:
+#     repoURL: https://github.com/aidana0804/Argocd_kubernetes_programmer_ayimdar_final.git
+#     path: argocd-apps
+#     targetRevision: HEAD
+#     helm:
+#       valueFiles:
+#         - prometheus-values.yaml
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true

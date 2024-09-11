@@ -18,6 +18,12 @@ spec:
       parameters:
         - name: metadata.annotations
           value: ""
+        - name: prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues
+          value: "false"
+        - name: alertmanager.enabled
+          value: "true"
+
+      
   syncPolicy:
     automated:
       prune: true
@@ -26,7 +32,7 @@ spec:
 
 
 
-      
+
 # apiVersion: argoproj.io/v1alpha1
 # kind: Application
 # metadata:

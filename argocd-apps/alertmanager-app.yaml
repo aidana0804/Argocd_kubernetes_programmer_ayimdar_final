@@ -5,19 +5,17 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: monitoring     # Namespace where Alertmanager will be deployed
+    namespace: monitoring
     server: https://kubernetes.default.svc
   project: default
   source:
     repoURL: https://github.com/aidana0804/Argocd_kubernetes_programmer_ayimdar_final.git
-    path: argocd-apps  # Path to the folder where values.yaml is located
-    targetRevision: HEAD      # You can also specify a branch or tag if needed
+    path: argocd-apps/alertmanager  # Path to the directory where the Alertmanager chart is located
+    targetRevision: HEAD
     helm:
-      chart: kube-prometheus-stack    # Use the correct chart if this comes from the prometheus-community Helm repo
       valueFiles:
-        - alermanaget-values.yaml    # Reference to the values.yaml in the alertmanager-rel folder
+        - alermanaget-values.yaml  # Reference to the values.yaml for Alertmanager
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-

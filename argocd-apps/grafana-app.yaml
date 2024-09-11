@@ -5,22 +5,20 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: monitoring    
+    namespace: monitoring
     server: https://kubernetes.default.svc
   project: default
   source:
     repoURL: https://github.com/aidana0804/Argocd_kubernetes_programmer_ayimdar_final.git
-    path: argocd-apps
-    targetRevision: HEAD      
+    path: argocd-apps/grafana  # Update this path to where your Grafana chart is located in your repo
+    targetRevision: HEAD
     helm:
-      chart: grafana          
       valueFiles:
-        - grafana-values.yaml         
+        - grafana-values.yaml
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-
 
 
 

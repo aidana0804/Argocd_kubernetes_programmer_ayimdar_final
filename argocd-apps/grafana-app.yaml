@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/aidana0804/Argocd_kubernetes_programmer_ayimdar_final.git
-    path: argocd-apps/grafana  # Update this path to where your Grafana chart is located in your repo
+    path: argocd-apps 
     targetRevision: HEAD
     helm:
       valueFiles:

@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/aidana0804/Argocd_kubernetes_programmer_ayimdar_final.git
-    path: argocd-apps/alertmanager  # Path to the directory where the Alertmanager chart is located
+    path: argocd-apps
     targetRevision: HEAD
     helm:
       valueFiles:

@@ -9,12 +9,12 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://prometheus-community.github.io/helm-charts  # Public Helm chart repo
-    chart: kube-prometheus-stack                                 # Public chart name
-    targetRevision: 36.0.0                                       # Chart version
+    repoURL: https://prometheus-community.github.io/helm-charts  
+    chart: kube-prometheus-stack                                 
+    targetRevision: 36.0.0                                       
     helm:
       valueFiles:
-        - prometheus-values.yaml                               
+        - values.yaml                               
   syncPolicy:
     automated:
       prune: true

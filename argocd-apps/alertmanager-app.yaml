@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: alertmanager
+  namespace: argocd
+spec:
+  destination:
+    namespace: monitoring     # Namespace where Alertmanager will be deployed
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/aidana0804/Argocd_kubernetes_programmer_ayimdar_final.git
+    path: argocd-apps  # Path to the folder where values.yaml is located
+    targetRevision: HEAD      # You can also specify a branch or tag if needed
+    helm:
+      chart: kube-prometheus-stack    # Use the correct chart if this comes from the prometheus-community Helm repo
+      valueFiles:
+        - alermanaget-values.yaml    # Reference to the values.yaml in the alertmanager-rel folder
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  syncOptions:
+    - CreateNamespace=true    # Create the namespace if it doesn't exist

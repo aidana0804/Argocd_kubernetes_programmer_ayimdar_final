@@ -1,0 +1,6 @@
+prometheus:
+  enabled: true
+  service:
+    type: LoadBalancer
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false

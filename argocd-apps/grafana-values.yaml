@@ -1,0 +1,17 @@
+service:
+  type: LoadBalancer
+  port: 80
+
+adminUser: admin
+adminPassword: admin
+
+persistence:
+  enabled: true
+  size: 10Gi
+  accessModes:
+    - ReadWriteOnce
+
+resources:
+  requests:
+    memory: 512Mi
+    cpu: 500m

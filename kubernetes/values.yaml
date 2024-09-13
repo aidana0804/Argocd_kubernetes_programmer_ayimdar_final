@@ -57,27 +57,27 @@ certManager:
   ingressClass: nginx
 
 
-externalDns:
-  provider: google
-  google:
-    project: kubernetes-434707
-    serviceAccountSecretName: external-dns-sa
-    serviceAccountKey: ./kubernetes-434707-535ba2c356b5.json
+# externalDns:
+#   provider: google
+#   google:
+#     project: kubernetes-434707
+#     serviceAccountSecretName: external-dns-sa
+#     serviceAccountKey: ./kubernetes-434707-535ba2c356b5.json
   
-  replicas: 1
+#   replicas: 1
 
-  rbac:
-    create: true
+#   rbac:
+#     create: true
 
-  serviceAccount:
-    create: true
-    name: external-dns
+#   serviceAccount:
+#     create: true
+#     name: external-dns
 
-  logLevel: info
-  sources:
-    - ingress
-  domainFilters:
-    - zizili.life 
-  policy: sync
-  txtOwnerId: kubernetes-434707
-  interval: "1m"
+#   logLevel: info
+#   sources:
+#     - ingress
+#   domainFilters:
+#     - zizili.life 
+#   policy: sync
+#   txtOwnerId: kubernetes-434707
+#   interval: "1m"
